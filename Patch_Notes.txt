@@ -1,0 +1,33 @@
+Welcome to Verion 2.2.0, I've added a few things... :
+
+- Save system (finally)
+- Settings has stuff now (Credits, Stats, reset Stats, Manual Save Button)
+- New Shop Page
+- New workers (Razor Mouse and Off-Brand autoclicker)
+- New shop item Worker Upgrades (only 1 for each so far)
+- Sorry to break the news but the current method I use to sort the buttons out (.pack()) makes it so I can't put another button on the same line unless I use .grid() (I tried to change it over but I'll need the basically make a new game for it to work)
+- Increased Window size
+- New shop design, lot more compacted but shows more upgrade + page system
+- Lots more little things I've forgot
+
+
+What to expect next update:
+
+- A rebirth system
+- 5th Worker or 2nd Upgrades (high chance for both)
+- More stuff in settings
+- Maybe a program built into the program to make it easier to send emails.
+
+Found Bugs? Email me: znewm9@eq.edu.au
+
+
+
+Dev Note(s): The game is 800+ lines of code except at least a few bugs unless I'm a fucking god at programming,
+             also once I've done the last few tweaks and updates I'll release it on github for all to see my horrible code writing.
+
+
+THIS PROGRAM IS SAFE! Windows defender or your anti-virus might think this is a virus or a threat THIS IS A FALSE POSTIVE, it's 100% safe with no malicous code behind it whatsoever
+
+
+
+Zacky2613 Copyright (c) 2021.
