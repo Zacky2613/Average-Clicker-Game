@@ -6,8 +6,6 @@ import os
 import sys
 import time
 
-# Hello! If you're reading this you have access to the source code of the game either my reverse engineering it or finding a copy on one of my computer, either way you are not allowed to modify, reproudce, or publish this code publicly, so fuck off.
-
 
 root = tk.Tk()
 
@@ -33,7 +31,6 @@ def Developer_Console():
 
 
 def Reset_Stats():
-
 	reset_stats_popup = mb.askquestion('Average Clicker Game', 'Are you sure you want to reset your stats? They cannot be recovered.')
 
 	if reset_stats_popup == "yes":
@@ -59,8 +56,7 @@ def save_system():
 # GOOGY / WINDOW FUNCTION
 
 
-
-# def Worker_func():
+def Worker_func():
 	global Clicks
 	global Total_Clicks
 
@@ -403,7 +399,7 @@ def Total_Stats():
 	Total_Clicks_label = tk.Label(root, text=f"Total Clicks: {Total_Clicks}")
 	Worker_CPS_label = tk.Label(root, text=f"Worker CPS: {Worker_CPS}")
 
-	I_Dont_wanna_finish_this = tk.Label(root, text=f"Times I wanna die: To big can't be rendered")
+	I_Dont_wanna_finish_this = tk.Label(root, text=f"Times I wanna die: To big can't be rendered") # I don't want to finish this to be completely honest.
 
 
 
@@ -425,7 +421,6 @@ def Credits():
 	Credits_Programmer_label.pack(side="top")
 	Blank_label.pack(side="top")
 	Credits_Idea_label.pack(side="top")
-	# Blank_label.pack(side="top")
 	Credits_Madewith_label.pack(side="top")
 
 
@@ -475,7 +470,6 @@ def Settings():
 
 	settings_other_label.pack(side="top", anchor="nw", pady=10)
 
-	# Stats_Button.pack(side="top", anchor="nw", pady=3, padx=5)
 	Credits_Button.pack(side="top", anchor="nw", pady=3, padx=5)
 	Credits_Button.configure(text="Game Credits", command=Credits)
 
@@ -483,7 +477,6 @@ def Settings():
 	Contact_label.pack(side="bottom", anchor="nw")
 	Developer_Console_Button.pack(side="bottom", anchor="nw")
 
-	# 1/12/21 - Finish up some settings features, Then should be good for release.
 
 
 
@@ -583,8 +576,6 @@ def Shop_Page_2():
 	Logitech_Mouse_Worker_Button.pack_forget()
 	Razor_Mouse_Worker_Button.pack_forget()
 	Autoclicker_Worker_Button.pack_forget()
-	# Razor_Mouse_Worker_Upgrade_Button.pack_forget()
-	# Autoclicker_Worker_Upgrade_Button.pack_forget()
 
 	Previous_Shop_Page_3_Button.pack_forget()	
 	Shop_Page_2_Button.pack_forget()
@@ -631,7 +622,6 @@ def Shop_Page_2():
 
 
 	Previous_Shop_Page_2_Button.pack(side="bottom", anchor="ne")
-	# Shop_Page_3_Button.pack(side="bottom", anchor="ne", pady=4)
 
 	Shop_Worker_Upgrade_label.pack(side="top", anchor="nw", pady=10, padx=5)
 
@@ -671,12 +661,19 @@ def Shop():
 	Developer_Console_Button.pack_forget()
 	Credits_Button.pack_forget()
 
+	Credits_Developer_label.pack_forget()
+	Credits_Idea_label.pack_forget()
+	Credits_Madewith_label.pack_forget()
+	Credits_Programmer_label.pack_forget()
+	Credits_Button.pack_forget()
+	Credits_Madewith_label.pack_forget()
+	Blank_label.pack_forget()
+
 	root['background']='#eacb1c'
 
 	click_label.configure(text =f"Clicks: {Clicks}", bg="#eacb1c")
 	click_button.configure(text = " ", borderwidth=0, bg="#eacb1c", fg="#eacb1c", activebackground = '#eacb1c', activeforeground = '#eacb1c', width=1, height=1, image=ButtonClicker_Yellow_Image)
 	Shop_button.configure(text = "Leave Shop", command = leave_Shop, borderwidth=3)
-	# Settings_button.configure(text = " ", borderwidth=0, bg="#eacb1c", fg="#eacb1c")
 	Worker_label.configure(bg="#eacb1c")
  
 
@@ -834,7 +831,7 @@ if __name__ == "__main__":
 	Developer_Console_Button = tk.Button(root, text="    ", bg="#4851e6", fg="#4851e6", activebackground = '#4851e6', activeforeground = '#4851e6', borderwidth=0, command=Developer_Console)
 
 	# Contact Label
-	Contact_label = tk.Label(root, text="Report bugs: AverageClickerGame.bugreport@gmail.com", bg="#4851e6", font=("Helvetica",10))
+	Contact_label = tk.Label(root, text="Report bugs: [REDACTED]@gmail.com", bg="#4851e6", font=("Helvetica",10))
 
 	Worker_func()
 
@@ -844,5 +841,4 @@ def close(bind):
 
 root.protocol("WM_DELETE_WINDOW", save_system)
 root.bind("<Escape>", close)
-root.mainloop()
 root.mainloop()
