@@ -36,3 +36,5 @@ Autoclicker_Price = 175
 Autoclicker_Name = 'Off-Brand Autoclicker'
 Autoclicker_DPS = 15
 Autoclicker_Upgrade_var = False
+
+# In case something goes wrong with the save system, file gets corrupted, or editing the save system this is a backup.
