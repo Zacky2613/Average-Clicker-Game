@@ -1,6 +1,6 @@
 from tkinter import PhotoImage, font
 from tkinter import messagebox as mb
-from Saves.save import Clicks, Total_Clicks, Worker_CPS, Double_Click_Upgrade, Double_Click_var, Triple_Click_Upgrade, Triple_Click_var, Quintuple_Click_Upgrade, Quintuple_Click_var, Unpaid_Intern, Unpaid_Intern_Price, Unpaid_Intern_DPS, Unpaid_Intern_Name, Unpaid_Intern_Upgrade_var, Logitech_Mouse, Logitech_Mouse_Price, Logitech_Mouse_Name, Logitech_Mouse_DPS, Logitech_Mouse_Upgrade_var, Razor_Mouse, Razor_Mouse_Name, Razor_Mouse_Price, Razor_Mouse_DPS, Razor_Mouse_Upgrade_var, Autoclicker, Autoclicker_DPS, Autoclicker_Name, Autoclicker_Price, Autoclicker_Upgrade_var
+from Saves.save import *
 import tkinter as tk
 import os
 import sys
