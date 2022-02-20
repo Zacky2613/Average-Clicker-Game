@@ -6,28 +6,59 @@ import os
 import sys
 import time
 
-
 root = tk.Tk()
 
-
 # IMPORTANT NONE GOOGY FUNCTIONS
+
+def Pack_Forget():
+	reset_stats_button.pack_forget()
+	Settings_button.pack_forget()
+
+	Shop_Worker_label.pack_forget()
+	Previous_Shop_Page_2_Button.pack_forget()
+	Shop_Page_3_Button.pack_forget()
+	Shop_Worker_Upgrade_label.pack_forget()
+
+	Unpaid_Intern_Worker_Upgrade_Button.pack_forget()
+	Logitech_Mouse_Worker_Upgrade_Button.pack_forget()
+	Razor_Mouse_Worker_Upgrade_Button.pack_forget()
+	Autoclicker_Worker_Upgrade_Button.pack_forget()
+
+	Unpaid_Intern_Worker_Button.pack_forget()
+	Logitech_Mouse_Worker_Button.pack_forget()
+	Razor_Mouse_Worker_Button.pack_forget()
+	Autoclicker_Worker_Button.pack_forget()
+
+	settings_other_label.pack_forget()
+	settings_save_label.pack_forget()
+	Settings_button.pack_forget()
+	reset_stats_button.pack_forget()
+	Save_Button.pack_forget()
+	Contact_label.pack_forget()
+	Credits_Button.pack_forget()
+	Shop_ClickUpgrade_Label.pack_forget()
+	Shop_Page_2_Button.pack_forget()
+	Shop_Page_3_Button.pack_forget()
+
+	Shop_Double_Button.pack_forget()
+	Shop_Triple_Button.pack_forget()
+	Shop_Quintuple_Button.pack_forget()
+
+	Credits_Developer_label.pack_forget()
+	Credits_Idea_label.pack_forget()
+	Credits_Madewith_label.pack_forget()
+	Credits_Programmer_label.pack_forget()
+	Credits_Button.pack_forget()
+	Credits_Madewith_label.pack_forget()
+	Blank_label.pack_forget()
+
 
 def resource_path(relative_path):
     try:
         base_path = sys._MEIPASS
     except Exception:
         base_path = os.path.abspath(".")
-
     return os.path.join(base_path, relative_path)
-
-
-
-def Developer_Console():
-	global Clicks
-
-	Clicks += 9999999999
-	click_label.configure(text=f"Clicks: {Clicks}")
-
 
 
 def Reset_Stats():
@@ -35,25 +66,21 @@ def Reset_Stats():
 
 	if reset_stats_popup == "yes":
 		with open(resource_path("Saves/save.py"), "w") as f:
-			f.write(f"Clicks = 0\nTotal_Clicks = 0\nWorker_CPS = 0\n\n\nDouble_Click_Upgrade = False\nDouble_Click_var = False\n\nTriple_Click_Upgrade = False\nTriple_Click_var = False\n\nQuintuple_Click_Upgrade = False\nQuintuple_Click_var = False\n\n\nUnpaid_Intern = 0\nUnpaid_Intern_Price = 10\nUnpaid_Intern_Name = 'Unpaid Intern'\nUnpaid_Intern_DPS = 0.5\nUnpaid_Intern_Upgrade_var = False\n\nLogitech_Mouse = 0\nLogitech_Mouse_Price = 25\nLogitech_Mouse_Name = 'Logitech Mouse'\nLogitech_Mouse_DPS = 2\nLogitech_Mouse_Upgrade_var = False\n\nRazor_Mouse = 0\nRazor_Mouse_Price = 75\nRazor_Mouse_Name = 'Razor Mouse'\nRazor_Mouse_DPS = 5\nRazor_Mouse_Upgrade_var = False\n\nAutoclicker = 0\nAutoclicker_Price = 175\nAutoclicker_Name = 'Off-Brand Autoclicker'\nAutoclicker_DPS = 15\nAutoclicker_Upgrade_var = False")
-			f.close()
-		
+			f.write(f"Clicks = 0\nTotal_Clicks = 0\nWorker_CPS = 0\n\n\nDouble_Click_Upgrade = False\n\nTriple_Click_Upgrade = False\n\nQuintuple_Click_Upgrade = False\n\n\nUnpaid_Intern = 0\nUnpaid_Intern_Price = 10\nUnpaid_Intern_Name = 'Unpaid Intern'\nUnpaid_Intern_DPS = 0.5\nUnpaid_Intern_Upgrade_var = False\n\nLogitech_Mouse = 0\nLogitech_Mouse_Price = 25\nLogitech_Mouse_Name = 'Logitech Mouse'\nLogitech_Mouse_DPS = 2\nLogitech_Mouse_Upgrade_var = False\n\nRazor_Mouse = 0\nRazor_Mouse_Price = 75\nRazor_Mouse_Name = 'Razor Mouse'\nRazor_Mouse_DPS = 5\nRazor_Mouse_Upgrade_var = False\n\nAutoclicker = 0\nAutoclicker_Price = 175\nAutoclicker_Name = 'Off-Brand Autoclicker'\nAutoclicker_DPS = 15\nAutoclicker_Upgrade_var = False")
 		root.destroy()
 	else:
 		return
 
 
-
 def save_system():
 	with open(resource_path("Saves/save.py"), "w") as f:
-		f.write(f"Clicks = {Clicks}\nTotal_Clicks = {Total_Clicks}\nWorker_CPS = {Worker_CPS}\n\n\nDouble_Click_Upgrade = {Double_Click_Upgrade}\nDouble_Click_var = {Double_Click_var}\n\nTriple_Click_Upgrade = {Triple_Click_Upgrade}\nTriple_Click_var = {Triple_Click_var}\n\nQuintuple_Click_Upgrade = {Quintuple_Click_Upgrade}\nQuintuple_Click_var = {Quintuple_Click_var}\n\n\nUnpaid_Intern = {Unpaid_Intern}\nUnpaid_Intern_Price = {Unpaid_Intern_Price}\nUnpaid_Intern_Name = '{Unpaid_Intern_Name}'\nUnpaid_Intern_DPS = {Unpaid_Intern_DPS}\nUnpaid_Intern_Upgrade_var = {Unpaid_Intern_Upgrade_var}\n\nLogitech_Mouse = {Logitech_Mouse}\nLogitech_Mouse_Price = {Logitech_Mouse_Price}\nLogitech_Mouse_Name = '{Logitech_Mouse_Name}'\nLogitech_Mouse_DPS = {Logitech_Mouse_DPS}\nLogitech_Mouse_Upgrade_var = {Logitech_Mouse_Upgrade_var}\n\nRazor_Mouse = {Razor_Mouse}\nRazor_Mouse_Price = {Razor_Mouse_Price}\nRazor_Mouse_Name = '{Razor_Mouse_Name}'\nRazor_Mouse_DPS = {Razor_Mouse_DPS}\nRazor_Mouse_Upgrade_var = {Razor_Mouse_Upgrade_var}\n\nAutoclicker = {Autoclicker}\nAutoclicker_Price = {Autoclicker_Price}\nAutoclicker_Name = '{Autoclicker_Name}'\nAutoclicker_DPS = {Autoclicker_DPS}\nAutoclicker_Upgrade_var = {Autoclicker_Upgrade_var}")
+		f.write(f"Clicks = {Clicks}\nTotal_Clicks = {Total_Clicks}\nWorker_CPS = {Worker_CPS}\n\n\nDouble_Click_Upgrade = {Double_Click_Upgrade}\n\nTriple_Click_Upgrade = {Triple_Click_Upgrade}\n\nQuintuple_Click_Upgrade = {Quintuple_Click_Upgrade}\n\n\nUnpaid_Intern = {Unpaid_Intern}\nUnpaid_Intern_Price = {Unpaid_Intern_Price}\nUnpaid_Intern_Name = '{Unpaid_Intern_Name}'\nUnpaid_Intern_DPS = {Unpaid_Intern_DPS}\nUnpaid_Intern_Upgrade_var = {Unpaid_Intern_Upgrade_var}\n\nLogitech_Mouse = {Logitech_Mouse}\nLogitech_Mouse_Price = {Logitech_Mouse_Price}\nLogitech_Mouse_Name = '{Logitech_Mouse_Name}'\nLogitech_Mouse_DPS = {Logitech_Mouse_DPS}\nLogitech_Mouse_Upgrade_var = {Logitech_Mouse_Upgrade_var}\n\nRazor_Mouse = {Razor_Mouse}\nRazor_Mouse_Price = {Razor_Mouse_Price}\nRazor_Mouse_Name = '{Razor_Mouse_Name}'\nRazor_Mouse_DPS = {Razor_Mouse_DPS}\nRazor_Mouse_Upgrade_var = {Razor_Mouse_Upgrade_var}\n\nAutoclicker = {Autoclicker}\nAutoclicker_Price = {Autoclicker_Price}\nAutoclicker_Name = '{Autoclicker_Name}'\nAutoclicker_DPS = {Autoclicker_DPS}\nAutoclicker_Upgrade_var = {Autoclicker_Upgrade_var}")
 		f.close()
 	
 	root.destroy()
 
 
-
-# GOOGY / WINDOW FUNCTION
+# =-=-=-=-=- GOOGY / WINDOW FUNCTION -=-=-=-=-=
 
 
 def Worker_func():
@@ -70,8 +97,6 @@ def Worker_func():
 
 	click_label.configure(text=f"Clicks: {Clicks}")
 	Worker_label.after(100, Worker_func)
-		
-
 
 
 def on_click():
@@ -99,79 +124,38 @@ def on_click():
 		click_label.configure(text=f"Clicks: {Clicks}")	
 
 
-
-def Double_Click_Upgrade_Item():
-	global Shop_DoubleClick_Button
-	global Double_Click_var
-	global Double_Click_Upgrade
-	global Clicks
-
-	if Clicks >= 75 and Double_Click_Upgrade != True:
-
-		Clicks -= 75
-		click_label.configure(text=f"Clicks: {Clicks}")
-		Shop_DoubleClick_Button.configure(text="Double Click: [BOUGHT]")
-		Double_Click_Upgrade = True
-		Double_Click_var = True
-
-		if Triple_Click_Upgrade == True or Quintuple_Click_Upgrade == True:
-			Double_Click_var = False
-
-	else:
-		return
-
-
-
-
-def Triple_Click_Upgrade_Item():
-	global Shop_TripleClick_Button
-	global Triple_Click_var
-	global Triple_Click_Upgrade
-	global Double_Click_var
-	global Clicks
-
-	if Clicks >= 225 and Triple_Click_Upgrade != True:
-
-		Clicks -= 225
-		click_label.configure(text=f"Clicks: {Clicks}")
-		Shop_TripleClick_Button.configure(text="Triple Click: [BOUGHT]")
-		Triple_Click_Upgrade = True
-		Triple_Click_var = True
-
-		if Double_Click_var == True:
-			Double_Click_var = False
-		
-	else:
-		return
-
-
-
-
-def Quintuple_Click_Upgrade_Item():
-	global Shop_QuintupleClick_Button
+def Click_Upgrade_Item(type: str):
+	global Shop_Quintuple_Button
 	global Quintuple_Click_var
 	global Quintuple_Click_Upgrade
-	global Double_Click_var
+	global Shop_Triple_Button
+	global Triple_Click_Upgrade
 	global Triple_Click_var
+	global Shop_Double_Button
+	global Double_Click_Upgrade
+	global Double_Click_var
 	global Clicks
 
-	if Clicks >= 1000 and Quintuple_Click_Upgrade != True:
+	if type == "Double" and Clicks >= 75 and Double_Click_Upgrade == False:
+		Clicks -= 75
+		click_label.configure(text=f"Clicks: {Clicks}")
+		Shop_Quintuple_Button.configure(text="Double Click: [BOUGHT]")
+		Double_Click_Upgrade = True
 
+	elif type == "Triple" and Clicks >= 225 and Triple_Click_Upgrade == False:
+		Clicks -= 225
+		click_label.configure(text=f"Clicks: {Clicks}")
+		Shop_Quintuple_Button.configure(text="Triple Click: [BOUGHT]")
+		Triple_Click_Upgrade = True
+	
+	elif type == "Quintuple" and Clicks >= 100 and Quintuple_Click_Upgrade == False:
 		Clicks -= 1000
 		click_label.configure(text=f"Clicks: {Clicks}")
-		Shop_QuintupleClick_Button.configure(text="Quintuple Click: [BOUGHT]")
+		Shop_Quintuple_Button.configure(text="Quintuple Click: [BOUGHT]")
 		Quintuple_Click_Upgrade = True
-		Quintuple_Click_var = True
-
-		if Double_Click_var == True:
-			Double_Click_var = False
-
-		elif Triple_Click_var == True:
-			Triple_Click_var = False
-
-	else:
+	
+	else: 
 		return
-
 
 
 
@@ -195,8 +179,6 @@ def Unpaid_Intern_Worker():
 
 		Worker_CPS += Unpaid_Intern_DPS
 		Worker_label.configure(text=f"Worker CPS: {Worker_CPS}")
-
-
 
 
 def Unpaid_Intern_Worker_Upgrade():
@@ -228,8 +210,6 @@ def Unpaid_Intern_Worker_Upgrade():
 		Unpaid_Intern_Upgrade_var = True
 
 
-
-
 def Logitech_Mouse_Worker():
 	global Clicks
 	global Worker_CPS
@@ -250,8 +230,6 @@ def Logitech_Mouse_Worker():
 
 		Worker_CPS += Logitech_Mouse_DPS
 		Worker_label.configure(text=f"Worker CPS: {Worker_CPS}")
-
-
 
 
 def Logitech_Mouse_Worker_Upgrade():
@@ -283,8 +261,6 @@ def Logitech_Mouse_Worker_Upgrade():
 		Logitech_Mouse_Upgrade_var = True
 
 
-
-
 def Razor_Mouse_Worker():
 	global Clicks
 	global Worker_CPS
@@ -305,8 +281,6 @@ def Razor_Mouse_Worker():
 
 		Worker_CPS += Razor_Mouse_DPS
 		Worker_label.configure(text=f"Worker CPS: {Worker_CPS}")
-
-
 
 
 def Razor_Mouse_Worker_Upgrade():
@@ -335,8 +309,6 @@ def Razor_Mouse_Worker_Upgrade():
 
 		Razor_Mouse_Upgrade_var = True
 
-	
-
 
 def Autoclicker_Worker():
 	global Clicks
@@ -358,8 +330,6 @@ def Autoclicker_Worker():
 
 		Worker_CPS += Autoclicker_DPS
 		Worker_label.configure(text=f"Worker CPS: {Worker_CPS}")
-
-
 
 
 def Autoclicker_Worker_Upgrade():
@@ -388,34 +358,11 @@ def Autoclicker_Worker_Upgrade():
 
 		Autoclicker_Upgrade_var = True
 
-
-
-
-def Total_Stats():
-	reset_stats_button.pack_forget()
-	Settings_button.pack_forget()
-
-	Clicks_label = tk.Label(root, text=f"Clicks: {Clicks}")
-	Total_Clicks_label = tk.Label(root, text=f"Total Clicks: {Total_Clicks}")
-	Worker_CPS_label = tk.Label(root, text=f"Worker CPS: {Worker_CPS}")
-
-	I_Dont_wanna_finish_this = tk.Label(root, text=f"Times I wanna die: To big can't be rendered") # I don't want to finish this to be completely honest.
-
-
-
-
 def Credits():
-	settings_other_label.pack_forget()
-	settings_save_label.pack_forget()
-	reset_stats_button.pack_forget()
-	Save_Button.pack_forget()
-	Stats_Button.pack_forget()
-	Contact_label.pack_forget()
-	Developer_Console_Button.pack_forget()
-	Credits_Button.pack_forget()
+	Pack_Forget()
 
 	Credits_Button.pack(side="bottom", anchor="ne")
-	Credits_Button.configure(text="Close Credits", command=Settings)
+	Credits_Button.configure(text="Close Credits", command=ACG_Settings_Render)
 
 	Credits_Developer_label.pack(side="top")
 	Credits_Programmer_label.pack(side="top")
@@ -424,44 +371,21 @@ def Credits():
 	Credits_Madewith_label.pack(side="top")
 
 
+def ACG_Settings_Close():
+	Pack_Forget()
 
-
-
-def Settings_Close():
 	click_label.configure(text=f"Clicks: {Clicks}", bg="#4851e6")
-	Shop_button.configure(text = "Enter Shop", command = Shop)
+	Shop_button.configure(text = "Enter Shop", command = ACG_Shop_Render)
 	click_button.configure(text = "Click me", borderwidth=0, bg="#4851d7", fg="#4851e6", activebackground = '#4851e6', activeforeground = '#4851e6', command=on_click, width=250, height=270, image=ButtonClick_Image)
-	Settings_button.configure(text = "Settings", borderwidth=2, bg="white", fg="black", command=Settings)
-	settings_other_label.pack_forget()
-	settings_save_label.pack_forget()
-	reset_stats_button.pack_forget()
-	Save_Button.pack_forget()
-	Stats_Button.pack_forget()
-	Contact_label.pack_forget()
-	Developer_Console_Button.pack_forget()
-	Credits_Button.pack_forget()
-	Credits_Developer_label.pack_forget()
-	Credits_Idea_label.pack_forget()
-	Credits_Madewith_label.pack_forget()
-	Credits_Programmer_label.pack_forget()
-	Credits_Button.pack_forget()
-	Credits_Madewith_label.pack_forget()
-	Blank_label.pack_forget()
+	Settings_button.configure(text = "Settings", borderwidth=2, bg="white", fg="black", command=ACG_Settings_Render)
 
 
+def ACG_Settings_Render():
+	Pack_Forget()
 
-
-def Settings():
 	click_button.configure(text = " ", borderwidth=0, bg="#eacb1c", fg="#eacb1c", activebackground = '#eacb1c', activeforeground = '#eacb1c', width=1, height=1, image=ButtonClicker_Blue_Image)
-	Shop_button.configure(text = "Enter Shop", command = Shop, borderwidth=3)
-	Settings_button.configure(text = "Leave Settings", borderwidth=2, command=Settings_Close)
-	Credits_Developer_label.pack_forget()
-	Credits_Idea_label.pack_forget()
-	Credits_Madewith_label.pack_forget()
-	Credits_Programmer_label.pack_forget()
-	Credits_Button.pack_forget()
-	Credits_Madewith_label.pack_forget()
-	Blank_label.pack_forget()
+	Shop_button.configure(text = "Enter Shop", command = ACG_Shop_Render, borderwidth=3)
+	Settings_button.configure(text = "Leave Settings", borderwidth=2, command=ACG_Shop_Close)
 
 	settings_save_label.pack(side="top", anchor="nw")
 
@@ -473,67 +397,23 @@ def Settings():
 	Credits_Button.pack(side="top", anchor="nw", pady=3, padx=5)
 	Credits_Button.configure(text="Game Credits", command=Credits)
 
+	Settings_button.pack(side="bottom", anchor="se", pady=10)
 
-	Contact_label.pack(side="bottom", anchor="nw")
-	Developer_Console_Button.pack(side="bottom", anchor="nw")
-
-
-
-
-
-def leave_Shop():
+def ACG_Shop_Close():
+	Pack_Forget()
 
 	root['background']='#4851e6'
 
 	click_label.configure(text=f"Clicks: {Clicks}", bg="#4851e6")
-	Shop_button.configure(text = "Enter Shop", command = Shop)
+	Shop_button.configure(text = "Enter Shop", command = ACG_Shop_Render)
 	click_button.configure(text = "Click me", borderwidth=0, bg="#4851d7", fg="#4851e6", activebackground = '#4851e6', activeforeground = '#4851e6', command=on_click, width=250, height=270, image=ButtonClick_Image)
 	Settings_button.pack(anchor="ne", side="bottom", padx=5, pady=5)
-	Settings_button.configure(text = "Settings", borderwidth=2, bg="white", fg="black", command=Settings)
+	Settings_button.configure(text = "Settings", borderwidth=2, bg="white", fg="black", command=ACG_Settings_Render)
 	Worker_label.configure(bg="#4851e6")
 
 
-	Shop_DoubleClick_Button.pack_forget()
-	Shop_TripleClick_Button.pack_forget()
-	Shop_QuintupleClick_Button.pack_forget()
-
-	Shop_ClickUpgrade_Label.pack_forget()
-
-	Unpaid_Intern_Worker_Button.pack_forget()
-	Unpaid_Intern_Worker_Upgrade_Button.pack_forget()
-	Logitech_Mouse_Worker_Button.pack_forget()
-	Logitech_Mouse_Worker_Upgrade_Button.pack_forget()
-	Razor_Mouse_Worker_Button.pack_forget()
-	Razor_Mouse_Worker_Upgrade_Button.pack_forget()
-	Autoclicker_Worker_Button.pack_forget()
-	Autoclicker_Worker_Upgrade_Button.pack_forget()
-
-	Shop_Page_2_Button.pack_forget()
-	Shop_Page_3_Button.pack_forget()
-	Previous_Shop_Page_2_Button.pack_forget()
-	Previous_Shop_Page_3_Button.pack_forget()
-
-	Shop_Worker_Upgrade_label.pack_forget()
-	Shop_Worker_label.pack_forget()
-
-
-
-
-
-def Shop_Page_3():
-	Shop_Worker_label.pack_forget()
-	Previous_Shop_Page_2_Button.pack_forget()
-	Shop_Page_3_Button.pack_forget()
-	Shop_Worker_Upgrade_label.pack_forget()
-
-	Unpaid_Intern_Worker_Upgrade_Button.pack_forget()
-	Logitech_Mouse_Worker_Upgrade_Button.pack_forget()
-
-
-	Razor_Mouse_Worker_Button.pack_forget()
-	Autoclicker_Worker_Button.pack_forget()
-	reset_stats_button.pqack_forget()
-
+def ACG_Shop3_Render():
+	Pack_Forget()
 
 	if Razor_Mouse_Upgrade_var == True:
 		global Razor_Mouse_Worker_Upgrade_Button
@@ -561,35 +441,15 @@ def Shop_Page_3():
 	Previous_Shop_Page_3_Button.pack(side="bottom", anchor="ne")
 
 
-
-def Shop_Page_2():
-
-	Shop_DoubleClick_Button.pack_forget()
-	Shop_TripleClick_Button.pack_forget()
-	Shop_QuintupleClick_Button.pack_forget()
-
-	Shop_ClickUpgrade_Label.pack_forget()
-	Shop_Worker_label.pack_forget()
-	Shop_Worker_Upgrade_label.pack_forget()
-	
-	Unpaid_Intern_Worker_Button.pack_forget()
-	Logitech_Mouse_Worker_Button.pack_forget()
-	Razor_Mouse_Worker_Button.pack_forget()
-	Autoclicker_Worker_Button.pack_forget()
-
-	Previous_Shop_Page_3_Button.pack_forget()	
-	Shop_Page_2_Button.pack_forget()
-	Shop_Page_3_Button.pack_forget()
-
-	# Yeah, that's a lot of pack_forget()...
+def ACG_Shop2_Render():
+	Pack_Forget()
 
 	if Unpaid_Intern_Upgrade_var == True:
 		global Unpaid_Intern_Worker_Upgrade_Button	
 
 		Unpaid_Intern_Worker_Upgrade_Button = tk.Button(root, text=f"Slightly Paid Intern (0.5 -> 1 DPS): [BOUGHT]", command=Unpaid_Intern_Worker_Upgrade)
-
 		Unpaid_Intern_Worker_Upgrade_Button.pack_forget()
-		Unpaid_Intern_Worker_Upgrade_Button.configure(text=f"Slightly Paid Intern (0.5 -> 1 DPS): [BOUGHT]")
+
 	else:
 		Unpaid_Intern_Worker_Upgrade_Button.pack_forget()
 
@@ -597,7 +457,7 @@ def Shop_Page_2():
 	if Logitech_Mouse_Upgrade_var == True:
 		global Logitech_Mouse_Worker_Upgrade_Button
 
-		Logitech_Mouse_Worker_Upgrade_Button = tk.Button(root, text=f"Logitech Super Light Mouse (2 -> 4.5 DPS): [BOUGHT]", command = Logitech_Mouse_Worker_Upgrade)
+		Logitech_Mouse_Worker_Upgrade_Button = tk.Button(root, text=f"Logitech Super Light Mouse (2 -> 4.5 DPS): [BOUGHT]", command=Logitech_Mouse_Worker_Upgrade)
 
 		Logitech_Mouse_Worker_Upgrade_Button.pack_forget()
 		Logitech_Mouse_Worker_Upgrade_Button.configure(text=f"Logitech Super Light Mouse (2 -> 4.5 DPS): [BOUGHT]")
@@ -632,90 +492,56 @@ def Shop_Page_2():
 
 
 
-
-def Shop():
-
-	reset_stats_button.pack_forget()
-	Developer_Console_Button.pack_forget()
-	Settings_button.pack_forget()
-
-	Shop_Worker_label.pack_forget()
-	Previous_Shop_Page_2_Button.pack_forget()
-	Shop_Page_3_Button.pack_forget()
-	Shop_Worker_Upgrade_label.pack_forget()
-
-	Unpaid_Intern_Worker_Upgrade_Button.pack_forget()
-	Logitech_Mouse_Worker_Upgrade_Button.pack_forget()
-	Razor_Mouse_Worker_Upgrade_Button.pack_forget()
-	Autoclicker_Worker_Upgrade_Button.pack_forget()
-
-	Razor_Mouse_Worker_Button.pack_forget()
-	Autoclicker_Worker_Button.pack_forget()
-
-	settings_other_label.pack_forget()
-	settings_save_label.pack_forget()
-	reset_stats_button.pack_forget()
-	Save_Button.pack_forget()
-	Stats_Button.pack_forget()
-	Contact_label.pack_forget()
-	Developer_Console_Button.pack_forget()
-	Credits_Button.pack_forget()
-
-	Credits_Developer_label.pack_forget()
-	Credits_Idea_label.pack_forget()
-	Credits_Madewith_label.pack_forget()
-	Credits_Programmer_label.pack_forget()
-	Credits_Button.pack_forget()
-	Credits_Madewith_label.pack_forget()
-	Blank_label.pack_forget()
+def ACG_Shop_Render():
+	Pack_Forget()
 
 	root['background']='#eacb1c'
 
 	click_label.configure(text =f"Clicks: {Clicks}", bg="#eacb1c")
 	click_button.configure(text = " ", borderwidth=0, bg="#eacb1c", fg="#eacb1c", activebackground = '#eacb1c', activeforeground = '#eacb1c', width=1, height=1, image=ButtonClicker_Yellow_Image)
-	Shop_button.configure(text = "Leave Shop", command = leave_Shop, borderwidth=3)
+	Shop_button.configure(text = "Leave Shop", command = ACG_Shop_Close, borderwidth=3)
 	Worker_label.configure(bg="#eacb1c")
  
 
 	if Double_Click_Upgrade == True:
-		global Shop_DoubleClick_Button 
+		global Shop_Double_Button 
 
-		Shop_DoubleClick_Button = tk.Button(root, text="Double Click: [BOUGHT]", command=Double_Click_Upgrade_Item) 
+		Shop_Double_Button = tk.Button(root, text="Double Click: [BOUGHT]", command=Click_Upgrade_Item("Double")) 
 
-		Shop_DoubleClick_Button.pack_forget()
-		Shop_DoubleClick_Button.configure(text="Double Click: [BOUGHT]")
+		Shop_Double_Button.pack_forget()
+		Shop_Double_Button.configure(text="Double Click: [BOUGHT]")
 
 	else:
-		Shop_DoubleClick_Button.pack_forget()
+		Shop_Double_Button.pack_forget()
 
 
 	if Triple_Click_Upgrade == True:
-		global Shop_TripleClick_Button
+		global Shop_Triple_Button
 
-		Shop_TripleClick_Button = tk.Button(root, text="Triple Click: [BOUGHT]", command=Triple_Click_Upgrade_Item)
+		Shop_Triple_Button = tk.Button(root, text="Triple Click: [BOUGHT]", command=Click_Upgrade_Item("Triple"))
 
-		Shop_TripleClick_Button.pack_forget()
-		Shop_TripleClick_Button.configure(text="Triple Click: [BOUGHT]")
+		Shop_Triple_Button.pack_forget()
+		Shop_Triple_Button.configure(text="Triple Click: [BOUGHT]")
 	else:
-		Shop_TripleClick_Button.pack_forget()
+		Shop_Triple_Button.pack_forget()
 
 
 	if Quintuple_Click_Upgrade == True:
-		global Shop_QuintupleClick_Button
+		global Shop_Quintuple_Button
 
-		Shop_QuintupleClick_Button = tk.Button(root, text="Quintuple Click: [BOUGHT]", command=Quintuple_Click_Upgrade_Item)
+		Shop_Quintuple_Button = tk.Button(root, text="Quintuple Click: [BOUGHT]", command=Click_Upgrade_Item("Quintuple"))
 
-		Shop_QuintupleClick_Button.pack_forget()
-		Shop_QuintupleClick_Button.configure(text="Quintuple Click: [BOUGHT]")
+		Shop_Quintuple_Button.pack_forget()
+		Shop_Quintuple_Button.configure(text="Quintuple Click: [BOUGHT]")
 	else:
-		Shop_QuintupleClick_Button.pack_forget()
+		Shop_Quintuple_Button.pack_forget()
 
 
 	Shop_ClickUpgrade_Label.pack(side="top", anchor="nw", pady=0, padx=5)
 
-	Shop_DoubleClick_Button.pack(side="top", anchor="nw", pady=3, padx=5)
-	Shop_TripleClick_Button.pack(side="top", anchor="nw", pady=3, padx=5)
-	Shop_QuintupleClick_Button.pack(side="top", anchor="nw", pady=3, padx=5)
+	Shop_Double_Button.pack(side="top", anchor="nw", pady=3, padx=5)
+	Shop_Triple_Button.pack(side="top", anchor="nw", pady=3, padx=5)
+	Shop_Quintuple_Button.pack(side="top", anchor="nw", pady=3, padx=5)
 
 	Shop_Worker_label.pack(side="top", anchor="nw", pady=10, padx=5)
 
@@ -736,22 +562,38 @@ def Shop():
 	Shop_Page_2_Button.pack(side="bottom", anchor="ne")
 
 
+def ACG_Menu_Render():
+
+
+	ButtonClick_Image = PhotoImage(file = resource_path('Assets/ClickButton.png'))
+	ButtonClicker_Blue_Image = PhotoImage(file = resource_path("Assets/ClickButton_Blue.png"))
+	ButtonClicker_Yellow_Image = PhotoImage(file = resource_path("Assets/ClickButton_Yellow.png"))
+
+	# Other
+	Blank_label = tk.Label(root, text=" ", bg="#4851e6")
+
+	# KEY GAME VARIABLES (DO NOT TOUCH)
+
+	click_label.pack(anchor="sw", side="bottom")
+	Worker_label.pack(anchor="sw", side="top")
+	Shop_button.pack(anchor="ne", side="top", padx=5, pady=5)
+	Settings_button.pack(anchor="ne", side="bottom", padx=5, pady=5)
+	click_button.pack(anchor = "center")
 
 
 if __name__ == "__main__":
 
-	root.title("Average Clicker Game [v2.2.0]")
+	root.title("Average Clicker Game [v3.0.1]")
 	root.geometry("395x395")
 	root.resizable(False, False)
 	root.iconbitmap(resource_path('Assets/icon.ico'))
 	root['background']='#4851e6'
 
 
-
 	# Shop Upgrades
-	Shop_DoubleClick_Button = tk.Button(root, text="Double Click [75 Clicks]", command=Double_Click_Upgrade_Item)
-	Shop_TripleClick_Button = tk.Button(root, text="Triple Click: [225 Clicks]", command=Triple_Click_Upgrade_Item)
-	Shop_QuintupleClick_Button = tk.Button(root, text="Quintuple Click: [1000 Clicks]", command=Quintuple_Click_Upgrade_Item)
+	Shop_Double_Button = tk.Button(root, text="Double Click [75 Clicks]", command=Click_Upgrade_Item("Double"))
+	Shop_Triple_Button = tk.Button(root, text="Triple Click: [225 Clicks]", command=Click_Upgrade_Item("Triple"))
+	Shop_Quintuple_Button = tk.Button(root, text="Quintuple Click: [1000 Clicks]", command=Click_Upgrade_Item("Quintuple"))
 
 
 	# Shop Workers
@@ -774,10 +616,10 @@ if __name__ == "__main__":
 
 
 	# Shop Page Buttons
-	Shop_Page_2_Button = tk.Button(root, text="Page 2 ->", font=("Helvetica",10), command=Shop_Page_2)
-	Shop_Page_3_Button = tk.Button(root, text="Page 3 ->", font=("Helvetica",10), command=Shop_Page_3)
-	Previous_Shop_Page_2_Button = tk.Button(root, text="<- Page 1", font=("Helvetica",10), command=Shop)
-	Previous_Shop_Page_3_Button = tk.Button(root, text="<- Page 2", font=("Helvetica",10), command=Shop_Page_2)
+	Shop_Page_2_Button = tk.Button(root, text="Page 2 ->", font=("Helvetica",10), command=ACG_Shop2_Render)
+	Shop_Page_3_Button = tk.Button(root, text="Page 3 ->", font=("Helvetica",10), command=ACG_Shop3_Render)
+	Previous_Shop_Page_2_Button = tk.Button(root, text="<- Page 1", font=("Helvetica",10), command=ACG_Shop_Render)
+	Previous_Shop_Page_3_Button = tk.Button(root, text="<- Page 2", font=("Helvetica",10), command=ACG_Shop2_Render)
 
 
 	# Settings 
@@ -785,7 +627,6 @@ if __name__ == "__main__":
 	settings_other_label = tk.Label(root, text="Settings Other Features: ", bg="#4851e6")
 
 	reset_stats_button = tk.Button(root, text="Reset Stats", bg="red", fg="Black", activebackground="red", activeforeground="black", command=Reset_Stats)
-	Stats_Button = tk.Button(root, text=f"Total Stats", command=Total_Stats)	
 	Save_Button = tk.Button(root, text="Save Game Stats", command=save_system)
 	Credits_Button = tk.Button(root, text="Game Credits", command=Credits)
 
@@ -802,38 +643,26 @@ if __name__ == "__main__":
 	ButtonClicker_Blue_Image = PhotoImage(file = resource_path("Assets/ClickButton_Blue.png"))
 	ButtonClicker_Yellow_Image = PhotoImage(file = resource_path("Assets/ClickButton_Yellow.png"))
 
-	# Other
 	Blank_label = tk.Label(root, text=" ", bg="#4851e6")
 
-	# KEY GAME VARIABLES (DO NOT TOUCH)
-
-	# Clicks Counter
 	click_label = tk.Label(root, text=f"Clicks: {Clicks}", fg="black", bg="#4851e6", font=("Helvetica",10))
-	click_label.pack(anchor="sw", side="bottom")
 
 	# Worker DPS
 	Worker_label = tk.Label(root, text=f"Worker CPS: {Worker_CPS}", fg="black", bg="#4851e6", font=("Helvetica",10))
-	Worker_label.pack(anchor="sw", side="top")
 	
 	# Shop
-	Shop_button = tk.Button(root, text="Enter Shop", command=Shop)
-	Shop_button.pack(anchor="ne", side="top", padx=5, pady=5)
+	Shop_button = tk.Button(root, text="Enter Shop", command=ACG_Shop_Render)
 
 	# Settings
-	Settings_button = tk.Button(root, text="Settings", command=Settings)
-	Settings_button.pack(anchor="ne", side="bottom", padx=5, pady=5)
+	Settings_button = tk.Button(root, text="Settings", command=ACG_Settings_Render)
 
 	# ClickButton
-	click_button = tk.Button(root, text="click me", width=1100, height=1200, borderwidth=0, command=on_click, bg="#4851d7", fg="#4851e6", activebackground = '#4851e6', activeforeground = '#4851e6', image = ButtonClick_Image) 
-	click_button.pack(anchor = "center")
-
-	# Developer Console
-	Developer_Console_Button = tk.Button(root, text="    ", bg="#4851e6", fg="#4851e6", activebackground = '#4851e6', activeforeground = '#4851e6', borderwidth=0, command=Developer_Console)
+	click_button = tk.Button(root, text="click me", width=1100, height=1200, borderwidth=0, command=on_click, bg="#4851d7", fg="#4851e6", activebackground = '#4851e6', activeforeground = '#4851e6', image = ButtonClick_Image)
 
 	# Contact Label
 	Contact_label = tk.Label(root, text="Report bugs: [REDACTED]@gmail.com", bg="#4851e6", font=("Helvetica",10))
 
-	Worker_func()
+	ACG_Menu_Render()
 
 
 def close(bind): 
