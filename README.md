@@ -1,7 +1,9 @@
 # Average-Clicker-Game
-Average Clicker Game (ACG) is a Python clicker game not made with pygame but with tkinter, it has worker, worker upgrades, times click upgardes, settings, save system, etc.
-I regret making it with .pack instead of .grid because I could've made the UI / googy look much nicer but changing it would mean rewriting and fixing the entire game and I'm not up to that so if you want to you can go do that. This took roughly 2 weeks to make and was a great learning experience with tkinter, if you're reading this you can use this to help with tkinter code.
+[![Zacky2613 - Average-Clicker-Game](https://img.shields.io/static/v1?label=Zacky2613&message=Average-Clicker-Game&color=green&logo=github)](https://github.com/Zacky2613/Average-Clicker-Game "Go to GitHub repo")
 
-# README
+[![License](https://img.shields.io/badge/License-MIT-green)](#license.md)
+[![stars - Average-Clicker-Game](https://img.shields.io/github/stars/Zacky2613/Average-Clicker-Game?style=social)](https://github.com/Zacky2613/Average-Clicker-Game)
+[![forks - Average-Clicker-Game](https://img.shields.io/github/forks/Zacky2613/Average-Clicker-Game?style=social)](https://github.com/Zacky2613/Average-Clicker-Game)
 
-THIS IS MERELY A PROOF OF CONCEPT PLEASE DO NOT MAKE GAMES WITH TKINTER MAKE THEM WITH PYGAME AND SUCH THIS. WAS A PAIN TO MAKE WITH TKINTER WHICH WAS NOT MADE TO MAKE GAMES WHICH IS QUITE CLEAR, USE THIS AS A REFERENCE FOR OTHER TKINTER PROJECTS, ALSO THE LOVE OF GOD USE .GRID() NOT .PACK() I'VE LEARNED THIS THE HARD WAY AND I CAN'T GO BACK.
+Average-Clicker-Game is a proof of concept clicker game made with Python Tkinter. This game is discounted as of 27/02/22 but I will release patches and bug fixes as
+they come. Feel free to fork this and work upon this if you wish so!
