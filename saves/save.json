@@ -1,0 +1,39 @@
+{
+    "clicks": 10,
+    "total_clicks": 0,
+    "cps": 0,
+
+    "double_click": false,
+    "triple_click": false,
+    "quintuple_click": false,
+    
+
+    "comment": "Unpaid intern is shorten to ui same goes for everything else to save space in code.",
+    "ui": {
+        "name": "Unpaid Intern",
+        "price": 10,
+        "bought": 0,
+        "cps": 0.5
+    },
+
+    "lm": {
+        "name": "Logitech_Mouse",
+        "price": 25,
+        "bought": 0,
+        "cps": 2
+    },
+
+    "rm": {
+        "name": "Razor Mouse",
+        "price": 75,
+        "bought": 0,
+        "cps": 5
+    },
+
+    "auto": {
+        "name": "Autoclicker",
+        "price": 175,
+        "bought": 0,
+        "cps": 15
+    }
+}
