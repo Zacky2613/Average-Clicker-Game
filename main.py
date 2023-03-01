@@ -1,56 +1,8 @@
-from tkinter import PhotoImage, font
-from tkinter import messagebox as mb
-from Saves.save import *
+from tkinter import PhotoImage, messagebox as mb
 import tkinter as tk
+import json
 import os
 import sys
-import time
-
-root = tk.Tk()
-
-# IMPORTANT NONE GOOGY FUNCTIONS
-
-def Pack_Forget():
-	reset_stats_button.pack_forget()
-	Settings_button.pack_forget()
-
-	Shop_Worker_label.pack_forget()
-	Previous_Shop_Page_2_Button.pack_forget()
-	Shop_Page_3_Button.pack_forget()
-	Shop_Worker_Upgrade_label.pack_forget()
-
-	Unpaid_Intern_Worker_Upgrade_Button.pack_forget()
-	Logitech_Mouse_Worker_Upgrade_Button.pack_forget()
-	Razor_Mouse_Worker_Upgrade_Button.pack_forget()
-	Autoclicker_Worker_Upgrade_Button.pack_forget()
-
-	Unpaid_Intern_Worker_Button.pack_forget()
-	Logitech_Mouse_Worker_Button.pack_forget()
-	Razor_Mouse_Worker_Button.pack_forget()
-	Autoclicker_Worker_Button.pack_forget()
-
-	settings_other_label.pack_forget()
-	settings_save_label.pack_forget()
-	Settings_button.pack_forget()
-	reset_stats_button.pack_forget()
-	Save_Button.pack_forget()
-	Contact_label.pack_forget()
-	Credits_Button.pack_forget()
-	Shop_ClickUpgrade_Label.pack_forget()
-	Shop_Page_2_Button.pack_forget()
-	Shop_Page_3_Button.pack_forget()
-
-	Shop_Double_Button.pack_forget()
-	Shop_Triple_Button.pack_forget()
-	Shop_Quintuple_Button.pack_forget()
-
-	Credits_Developer_label.pack_forget()
-	Credits_Idea_label.pack_forget()
-	Credits_Madewith_label.pack_forget()
-	Credits_Programmer_label.pack_forget()
-	Credits_Button.pack_forget()
-	Credits_Madewith_label.pack_forget()
-	Blank_label.pack_forget()
 
 
 def resource_path(relative_path):
@@ -61,613 +13,213 @@ def resource_path(relative_path):
     return os.path.join(base_path, relative_path)
 
 
-def Reset_Stats():
-	reset_stats_popup = mb.askquestion('Average Clicker Game', 'Are you sure you want to reset your stats? They cannot be recovered.')
-
-	if reset_stats_popup == "yes":
-		with open(resource_path("Saves/save.py"), "w") as f:
-			f.write(f"Clicks = 0\nTotal_Clicks = 0\nWorker_CPS = 0\n\n\nDouble_Click_Upgrade = False\n\nTriple_Click_Upgrade = False\n\nQuintuple_Click_Upgrade = False\n\n\nUnpaid_Intern = 0\nUnpaid_Intern_Price = 10\nUnpaid_Intern_Name = 'Unpaid Intern'\nUnpaid_Intern_DPS = 0.5\nUnpaid_Intern_Upgrade_var = False\n\nLogitech_Mouse = 0\nLogitech_Mouse_Price = 25\nLogitech_Mouse_Name = 'Logitech Mouse'\nLogitech_Mouse_DPS = 2\nLogitech_Mouse_Upgrade_var = False\n\nRazor_Mouse = 0\nRazor_Mouse_Price = 75\nRazor_Mouse_Name = 'Razor Mouse'\nRazor_Mouse_DPS = 5\nRazor_Mouse_Upgrade_var = False\n\nAutoclicker = 0\nAutoclicker_Price = 175\nAutoclicker_Name = 'Off-Brand Autoclicker'\nAutoclicker_DPS = 15\nAutoclicker_Upgrade_var = False")
-		root.destroy()
-	else:
-		return
+with open("./saves/save.json", "r") as f:
+    data = json.load(f)
 
 
-def save_system():
-	with open(resource_path("Saves/save.py"), "w") as f:
-		f.write(f"Clicks = {Clicks}\nTotal_Clicks = {Total_Clicks}\nWorker_CPS = {Worker_CPS}\n\n\nDouble_Click_Upgrade = {Double_Click_Upgrade}\n\nTriple_Click_Upgrade = {Triple_Click_Upgrade}\n\nQuintuple_Click_Upgrade = {Quintuple_Click_Upgrade}\n\n\nUnpaid_Intern = {Unpaid_Intern}\nUnpaid_Intern_Price = {Unpaid_Intern_Price}\nUnpaid_Intern_Name = '{Unpaid_Intern_Name}'\nUnpaid_Intern_DPS = {Unpaid_Intern_DPS}\nUnpaid_Intern_Upgrade_var = {Unpaid_Intern_Upgrade_var}\n\nLogitech_Mouse = {Logitech_Mouse}\nLogitech_Mouse_Price = {Logitech_Mouse_Price}\nLogitech_Mouse_Name = '{Logitech_Mouse_Name}'\nLogitech_Mouse_DPS = {Logitech_Mouse_DPS}\nLogitech_Mouse_Upgrade_var = {Logitech_Mouse_Upgrade_var}\n\nRazor_Mouse = {Razor_Mouse}\nRazor_Mouse_Price = {Razor_Mouse_Price}\nRazor_Mouse_Name = '{Razor_Mouse_Name}'\nRazor_Mouse_DPS = {Razor_Mouse_DPS}\nRazor_Mouse_Upgrade_var = {Razor_Mouse_Upgrade_var}\n\nAutoclicker = {Autoclicker}\nAutoclicker_Price = {Autoclicker_Price}\nAutoclicker_Name = '{Autoclicker_Name}'\nAutoclicker_DPS = {Autoclicker_DPS}\nAutoclicker_Upgrade_var = {Autoclicker_Upgrade_var}")
-		f.close()
-	
-	root.destroy()
+root = tk.Tk()
+Clicks = data["clicks"]
+Total_clicks = data["total_clicks"]
 
 
-# =-=-=-=-=- GOOGY / WINDOW FUNCTION -=-=-=-=-=
+def worker_cps():
+    global Clicks
+    global Total_clicks
 
+    Clicks += round(data["cps"] / 10, 1)
+    Total_clicks += round(data["cps"] / 10, 1)
 
-def Worker_func():
-	global Clicks
-	global Total_Clicks
-
-	Clicks_worker_takeaway_temp = Worker_CPS / 10
-	Clicks_worker_takeaway_temp = round(Clicks_worker_takeaway_temp, 1)
-
-	Clicks += Clicks_worker_takeaway_temp
-	Clicks = round(Clicks, 1)
-	Total_Clicks += Clicks_worker_takeaway_temp
-	Total_Clicks = round(Total_Clicks, 1)
-
-	click_label.configure(text=f"Clicks: {Clicks}")
-	Worker_label.after(100, Worker_func)
+    click_label.configure(text=f"Clicks: {Clicks}")
+    worker_label.after(100, worker_cps)
 
 
 def on_click():
-	global Clicks
-	global Total_Clicks
-
-	if Double_Click_Upgrade == False and Triple_Click_Upgrade == False:
-		Clicks += 1
-		Total_Clicks += 1
-		click_label.configure(text=f"Clicks: {Clicks}")
-
-	elif Double_Click_Upgrade == True and Double_Click_var == True:
-		Clicks += 2
-		Total_Clicks += 2
-		click_label.configure(text=f"Clicks: {Clicks}")
-
-	elif Triple_Click_Upgrade == True and Triple_Click_var == True:
-		Clicks += 3
-		Total_Clicks += 3
-		click_label.configure(text=f"Clicks: {Clicks}")	
-
-	elif Quintuple_Click_Upgrade == True and Quintuple_Click_var == True:
-		Clicks += 5
-		Total_Clicks += 5
-		click_label.configure(text=f"Clicks: {Clicks}")	
-
-
-def Click_Upgrade_Item(type: str):
-	global Shop_Quintuple_Button
-	global Quintuple_Click_var
-	global Quintuple_Click_Upgrade
-	global Shop_Triple_Button
-	global Triple_Click_Upgrade
-	global Triple_Click_var
-	global Shop_Double_Button
-	global Double_Click_Upgrade
-	global Double_Click_var
-	global Clicks
+    global Clicks
+    global Total_clicks
 
-	if type == "Double" and Clicks >= 75 and Double_Click_Upgrade == False:
-		Clicks -= 75
-		click_label.configure(text=f"Clicks: {Clicks}")
-		Shop_Quintuple_Button.configure(text="Double Click: [BOUGHT]")
-		Double_Click_Upgrade = True
-
-	elif type == "Triple" and Clicks >= 225 and Triple_Click_Upgrade == False:
-		Clicks -= 225
-		click_label.configure(text=f"Clicks: {Clicks}")
-		Shop_Quintuple_Button.configure(text="Triple Click: [BOUGHT]")
-		Triple_Click_Upgrade = True
-	
-	elif type == "Quintuple" and Clicks >= 100 and Quintuple_Click_Upgrade == False:
-		Clicks -= 1000
-		click_label.configure(text=f"Clicks: {Clicks}")
-		Shop_Quintuple_Button.configure(text="Quintuple Click: [BOUGHT]")
-		Quintuple_Click_Upgrade = True
-	
-	else: 
-		return
+    # The way the if statements are placed is for hierarchy.
+    if data["quintuple_click"] == True:
+        Clicks += 5; Total_clicks += 5
+        click_label.configure(text=f"Clicks: {Clicks}")
 
+    elif data["triple_click"] == True:
+        Clicks += 3; Total_clicks += 3
+        click_label.configure(text=f"Clicks: {Clicks}")
 
+    elif data["double_click"] == True:
+        Clicks += 2; Total_clicks += 2
+        click_label.configure(text=f"Clicks: {Clicks}")
+    
+    else:
+        Clicks += 1; Total_clicks += 1
+        click_label.configure(text=f"Clicks: {Clicks}")
 
-def Unpaid_Intern_Worker():
-	global Clicks
-	global Worker_CPS
-	global Unpaid_Intern_Price
-	global Unpaid_Intern
 
-	if Clicks >= Unpaid_Intern_Price:
-		Clicks -= Unpaid_Intern_Price
+def click_upgrade(type: str):
+    global Clicks
 
-		Clicks = round(Clicks, 1)
-		click_label.configure(text=f"Clicks: {Clicks}")
+    if type == "double" and Clicks >= 75 and data["double_click"] == False:
+        Clicks -= 75
+        click_label.configure(text=f"Clicks: {Clicks}")
+        double_button.configure(text="Double Click: [BOUGHT]")
+        data["double_click"] = True
 
-		Unpaid_Intern_Price *= 1.2
-		Unpaid_Intern_Price = round(Unpaid_Intern_Price, 1)
-		Unpaid_Intern += 1
+    elif type == "triple" and Clicks >= 225 and data["triple_click"] == False:
+        Clicks -= 225
+        click_label.configure(text=f"Clicks: {Clicks}")
+        triple_button.configure(text="Triple Click: [BOUGHT]")
+        data["triple_click"] = True
 
-		Unpaid_Intern_Worker_Button.configure(text=f"{Unpaid_Intern_Name} ({Unpaid_Intern_DPS} DPS): [{Unpaid_Intern_Price} Clicks] - {Unpaid_Intern}")
+    elif type == "quintuple" and Clicks >= 1000 and data["quintuple_click"] == False:
+        Clicks -= 1000
+        click_label.configure(text=f"Clicks: {Clicks}")
+        quintuple_button.configure(text="Quintuple Click: [BOUGHT]")
+        data["quintuple_click"] = True
 
-		Worker_CPS += Unpaid_Intern_DPS
-		Worker_label.configure(text=f"Worker CPS: {Worker_CPS}")
+    else: 
+        return
 
 
-def Unpaid_Intern_Worker_Upgrade():
-	global Clicks
-	global Worker_CPS
-	global Unpaid_Intern_Name
-	global Unpaid_Intern_DPS
-	global Unpaid_Intern_Worker_Upgrade_Button
-	global Unpaid_Intern_Upgrade_var
+def buy_worker(type: str):
+    global Clicks, Total_clicks
 
-	if Clicks >= 750 and Unpaid_Intern_Upgrade_var != True:
-		Clicks -= 750
+    if Clicks >= data[type]["price"]:
+        Clicks -= round(data[type]["price"], 1)
 
-		click_label.configure(text=f"Clicks: {Clicks}")
+        data[type]["price"] += round(data[type]["price"] * 0.2)
+        data[type]["bought"] += 1
 
-		Old_Unpaid_Intern_Placeholder = Unpaid_Intern_DPS * Unpaid_Intern
-		Worker_CPS -= Old_Unpaid_Intern_Placeholder
+        data["cps"] += data[type]["cps"]
 
-		Unpaid_Intern_DPS = 1
-		New_Unpaid_Intern_Placeholder = Unpaid_Intern_DPS * Unpaid_Intern
-		Worker_CPS += New_Unpaid_Intern_Placeholder
+        if (type == "ui"):
+            ui_button.configure(text=f"{data['ui']['name']} ({data['ui']['cps']} CPS) [{data['ui']['price']} Clicks] - {data['ui']['bought']}")
+        elif (type == "lm"):
+            lm_button.configure(text=f"{data['lm']['name']} ({data['lm']['cps']} CPS) [{data['lm']['price']} Clicks] - {data['lm']['bought']}")
+        elif (type == "rm"):
+            rm_button.configure(text=f"{data['rm']['name']} ({data['rm']['cps']} CPS) [{data['rm']['price']} Clicks] - {data['ui']['bought']}")
+        elif (type == "auto"):
+            auto_button.configure(text=f"{data['auto']['name']} ({data['auto']['cps']} CPS) [{data['auto']['price']} Clicks] - {data['auto']['bought']}")
 
-		Worker_label.configure(text=f"Worker CPS: {Worker_CPS}")
+        worker_label.configure(text=f"Worker CPS: {data['cps']}")
 
-		Unpaid_Intern_Name = "Slightly Paid Intern"
 
-		Unpaid_Intern_Worker_Upgrade_Button.configure(text=f"Slightly Paid Intern (0.5 -> 1 DPS): [BOUGHT]")
-		
-		Unpaid_Intern_Upgrade_var = True
 
 
-def Logitech_Mouse_Worker():
-	global Clicks
-	global Worker_CPS
-	global Logitech_Mouse_Price
-	global Logitech_Mouse
+def leave_shop():
+    root['background']="#4851e6"
 
-	if Clicks >= Logitech_Mouse_Price:
-		Clicks -= Logitech_Mouse_Price
+    click_label.configure(text=f"Clicks: {Clicks}", bg="#4851e6")
+    shop_button.configure(text="Enter Shop", command=render_shop1)
+    click_button.configure(text="Click me", borderwidth=0, bg="#4851d7", fg="#4851e6", activebackground="#4851e6", activeforeground = "#4851e6", command=on_click, width=1100, height=1200, image=buttonclick)
+    worker_label.configure(bg="#4851e6")
 
-		Clicks = round(Clicks, 1)
-		click_label.configure(text=f"Clicks: {Clicks}")
 
-		Logitech_Mouse_Price *= 1.2
-		Logitech_Mouse_Price = round(Logitech_Mouse_Price, 1)
-		Logitech_Mouse += 1
+def render_shop1():
+    root['background']='#eacb1c'
 
-		Logitech_Mouse_Worker_Button.configure(text=f"{Logitech_Mouse_Name} ({Logitech_Mouse_DPS} DPS): [{Logitech_Mouse_Price} Clicks] - {Logitech_Mouse}")
+    click_label.configure(text=f"Clicks: {Clicks}", bg="#eacb1c")
+    click_button.configure(text=" ", borderwidth=0, bg="#eacb1c", fg="#eacb1c", activebackground='#eacb1c', activeforeground='#eacb1c', width=1, height=1, image=buttonclick_yellow)
+    shop_button.configure(text="Leave Shop", command=leave_shop, borderwidth=3)
+    worker_label.configure(bg="#eacb1c")
 
-		Worker_CPS += Logitech_Mouse_DPS
-		Worker_label.configure(text=f"Worker CPS: {Worker_CPS}")
+    # Clicker upgrade section:
+    blank_label_yellow.pack(pady=5)
+    shop_click_label.pack(side="top", anchor="nw", padx=2, pady=5)
 
+    double_button.pack(side="top", anchor="nw", padx=5, pady=3)
+    triple_button.pack(side="top", anchor="nw", padx=5, pady=3)
+    quintuple_button.pack(side="top", anchor="nw", padx=5, pady=3)
 
-def Logitech_Mouse_Worker_Upgrade():
-	global Clicks
-	global Worker_CPS
-	global Logitech_Mouse_Name
-	global Logitech_Mouse_DPS
-	global Logitech_Mouse_Worker_Upgrade_Button
-	global Logitech_Mouse_Upgrade_var
+    # Buying workers section:
+    shop_worker_label.pack(side="top", anchor="nw", padx=2, pady=5)
 
-	if Clicks >= 3500 and Logitech_Mouse_Upgrade_var != True:
-		Clicks -= 3500
+    ui_button.pack(side="top", anchor="nw", padx=5, pady=0)
+    ui_button.configure(text=f"{data['ui']['name']} ({data['ui']['cps']} CPS) [{data['ui']['price']} Clicks] - {data['ui']['bought']}")
 
-		click_label.configure(text=f"Clicks: {Clicks}")
+    lm_button.pack(side="top", anchor="nw", padx=5, pady=3)
+    lm_button.configure(text=f"{data['lm']['name']} ({data['lm']['cps']} CPS) [{data['lm']['price']} Clicks] - {data['lm']['bought']}")
 
-		Old_Logitech_Mouse_Placeholder = Logitech_Mouse_DPS * Logitech_Mouse
-		Worker_CPS -= Old_Logitech_Mouse_Placeholder
+    rm_button.pack(side="top", anchor="nw", padx=5, pady=3)
+    rm_button.configure(text=f"{data['rm']['name']} ({data['rm']['cps']} CPS) [{data['rm']['price']} Clicks] - {data['rm']['bought']}")
 
-		Logitech_Mouse_DPS = 4.5
-		New_Logitech_Mouse_Placeholder = Logitech_Mouse_DPS * Logitech_Mouse
-		Worker_CPS += New_Logitech_Mouse_Placeholder
+    auto_button.pack(side="top", anchor="nw", padx=5, pady=3)
+    auto_button.configure(text=f"{data['auto']['name']} ({data['auto']['cps']} CPS) [{data['auto']['price']} Clicks] - {data['auto']['bought']}")
 
-		Worker_label.configure(text=f"Worker CPS: {Worker_CPS}")
+    shop_page2_button.pack(side="bottom", anchor="se", padx=2, pady=5)
 
-		Logitech_Mouse_Name = "Logitech Super Light Mouse"
 
-		Logitech_Mouse_Worker_Upgrade_Button.configure(text=f"Logitech Super Light Mouse (2 -> 4.5 DPS): [BOUGHT]")
+def render_homescreen():
+    click_label.pack(anchor="nw")
+    worker_label.place(x=300)
 
-		Logitech_Mouse_Upgrade_var = True
+    settings_button.place(x=7, y=30)
+    shop_button.place(x=327, y=30)
 
-
-def Razor_Mouse_Worker():
-	global Clicks
-	global Worker_CPS
-	global Razor_Mouse_Price
-	global Razor_Mouse
-
-	if Clicks >= Razor_Mouse_Price:
-		Clicks -= Razor_Mouse_Price
-
-		Clicks = round(Clicks, 1)
-		click_label.configure(text=f"Clicks: {Clicks}")
-
-		Razor_Mouse_Price *= 1.2
-		Razor_Mouse_Price = round(Razor_Mouse_Price, 1)
-		Razor_Mouse += 1
-
-		Razor_Mouse_Worker_Button.configure(text=f"{Razor_Mouse_Name} ({Razor_Mouse_DPS} DPS): [{Razor_Mouse_Price} Clicks] - {Razor_Mouse}")
-
-		Worker_CPS += Razor_Mouse_DPS
-		Worker_label.configure(text=f"Worker CPS: {Worker_CPS}")
-
-
-def Razor_Mouse_Worker_Upgrade():
-	global Clicks
-	global Worker_CPS
-	global Razor_Mouse_Name
-	global Razor_Mouse_DPS
-	global Razor_Mouse_Worker_Upgrade_Button
-	global Razor_Mouse_Upgrade_var
-
-	if Clicks >= 12500 and Razor_Mouse_Upgrade_var != True:
-		Clicks -= 12500
-
-		click_label.configure(text=f"Clicks: {Clicks}")
-
-		Old_Razor_Mouse_Placeholder = Razor_Mouse_DPS * Razor_Mouse
-		Worker_CPS -= Old_Razor_Mouse_Placeholder
-
-		Razor_Mouse_DPS = 12.5
-		New_Razor_Mouse_Placeholder = Razor_Mouse_DPS * Razor_Mouse
-		Worker_CPS += New_Razor_Mouse_Placeholder
-
-		Razor_Mouse_Name = "Razor Viper Mouse"
-
-		Razor_Mouse_Worker_Upgrade_Button.configure(text=f"Razor Viper Mouse (5 -> 12.5): [BOUGHT]")
-
-		Razor_Mouse_Upgrade_var = True
-
-
-def Autoclicker_Worker():
-	global Clicks
-	global Worker_CPS
-	global Autoclicker_Price
-	global Autoclicker
-
-	if Clicks >= Autoclicker_Price:
-		Clicks -= Autoclicker_Price
-
-		Clicks = round(Clicks, 1)
-		click_label.configure(text=f"Clicks: {Clicks}")
-
-		Autoclicker_Price *= 1.2
-		Autoclicker_Price = round(Autoclicker_Price, 1)
-		Autoclicker += 1
-
-		Autoclicker_Worker_Button.configure(text=f"{Autoclicker_Name} ({Autoclicker_DPS} DPS): [{Autoclicker_Price} Clicks] - {Autoclicker}")
-
-		Worker_CPS += Autoclicker_DPS
-		Worker_label.configure(text=f"Worker CPS: {Worker_CPS}")
-
-
-def Autoclicker_Worker_Upgrade():
-	global Clicks
-	global Worker_CPS
-	global Autoclicker_Name
-	global Autoclicker_DPS
-	global Autoclicker_Worker_Upgrade_Button
-	global Autoclicker_Upgrade_var
-
-	if Clicks >= 35000 and Autoclicker_Upgrade_var != True:
-		Clicks -= 35000
-
-		click_label.configure(text=f"Clicks: {Clicks}")
-
-		Old_Autoclicker_Placeholder = Autoclicker_DPS * Autoclicker
-		Worker_CPS -= Old_Autoclicker_Placeholder
-
-		Autoclicker_DPS = 35
-		New_Autoclicker_Placeholder = Autoclicker_DPS * Autoclicker
-		Worker_CPS += New_Autoclicker_Placeholder
-
-		Autoclicker_Name = "Semi-OP Autoclicker"
-
-		Autoclicker_Worker_Upgrade_Button.configure(text=f"Semi-OP Autoclicker (15 -> 35 DPS): [BOUGHT]")
-
-		Autoclicker_Upgrade_var = True
-
-def Credits():
-	Pack_Forget()
-
-	Credits_Button.pack(side="bottom", anchor="ne")
-	Credits_Button.configure(text="Close Credits", command=ACG_Settings_Render)
-
-	Credits_Developer_label.pack(side="top")
-	Credits_Programmer_label.pack(side="top")
-	Blank_label.pack(side="top")
-	Credits_Idea_label.pack(side="top")
-	Credits_Madewith_label.pack(side="top")
-
-
-def ACG_Settings_Close():
-	Pack_Forget()
-
-	click_label.configure(text=f"Clicks: {Clicks}", bg="#4851e6")
-	Shop_button.configure(text = "Enter Shop", command = ACG_Shop_Render)
-	click_button.configure(text = "Click me", borderwidth=0, bg="#4851d7", fg="#4851e6", activebackground = '#4851e6', activeforeground = '#4851e6', command=on_click, width=250, height=270, image=ButtonClick_Image)
-	Settings_button.configure(text = "Settings", borderwidth=2, bg="white", fg="black", command=ACG_Settings_Render)
-
-
-def ACG_Settings_Render():
-	Pack_Forget()
-
-	click_button.configure(text = " ", borderwidth=0, bg="#eacb1c", fg="#eacb1c", activebackground = '#eacb1c', activeforeground = '#eacb1c', width=1, height=1, image=ButtonClicker_Blue_Image)
-	Shop_button.configure(text = "Enter Shop", command = ACG_Shop_Render, borderwidth=3)
-	Settings_button.configure(text = "Leave Settings", borderwidth=2, command=ACG_Shop_Close)
-
-	settings_save_label.pack(side="top", anchor="nw")
-
-	reset_stats_button.pack(side="top", anchor="nw", pady=5, padx=5)
-	Save_Button.pack(side="top", anchor="nw", pady=3, padx=5)
-
-	settings_other_label.pack(side="top", anchor="nw", pady=10)
-
-	Credits_Button.pack(side="top", anchor="nw", pady=3, padx=5)
-	Credits_Button.configure(text="Game Credits", command=Credits)
-
-	Settings_button.pack(side="bottom", anchor="se", pady=10)
-
-def ACG_Shop_Close():
-	Pack_Forget()
-
-	root['background']='#4851e6'
-
-	click_label.configure(text=f"Clicks: {Clicks}", bg="#4851e6")
-	Shop_button.configure(text = "Enter Shop", command = ACG_Shop_Render)
-	click_button.configure(text = "Click me", borderwidth=0, bg="#4851d7", fg="#4851e6", activebackground = '#4851e6', activeforeground = '#4851e6', command=on_click, width=250, height=270, image=ButtonClick_Image)
-	Settings_button.pack(anchor="ne", side="bottom", padx=5, pady=5)
-	Settings_button.configure(text = "Settings", borderwidth=2, bg="white", fg="black", command=ACG_Settings_Render)
-	Worker_label.configure(bg="#4851e6")
-
-
-def ACG_Shop3_Render():
-	Pack_Forget()
-
-	if Razor_Mouse_Upgrade_var == True:
-		global Razor_Mouse_Worker_Upgrade_Button
-
-		Razor_Mouse_Worker_Upgrade_Button = tk.Button(root, text="Razor Viper Mouse (5 -> 12.5 DPS): [BOUGHT]")
-
-		Razor_Mouse_Worker_Upgrade_Button.pack_forget()
-		Razor_Mouse_Worker_Upgrade_Button.configure(text="Razor Viper Mouse (5 -> 12.5 DPS): [BOUGHT]")
-
-
-	if Autoclicker_Upgrade_var == True:
-		global Autoclicker_Worker_Upgrade_Button
-
-		Autoclicker_Worker_Upgrade_Button = tk.Button(root, text=f"Semi-OP Autoclicker (15 -> 35 DPS): [BOUGHT]")
-
-		Autoclicker_Worker_Upgrade_Button.pack_forget()
-		Autoclicker_Worker_Upgrade_Button.configure(text=f"Semi-OP Autoclicker (15 -> 35 DPS): [BOUGHT]")
-
-
-	Shop_Worker_Upgrade_label.pack(side="top", anchor="nw", pady=0, padx=5)
-
-	Razor_Mouse_Worker_Upgrade_Button.pack(side="top", anchor="nw", padx=3, pady=3)
-	Autoclicker_Worker_Upgrade_Button.pack(side="top", anchor="nw", padx=3, pady=3)
-
-	Previous_Shop_Page_3_Button.pack(side="bottom", anchor="ne")
-
-
-def ACG_Shop2_Render():
-	Pack_Forget()
-
-	if Unpaid_Intern_Upgrade_var == True:
-		global Unpaid_Intern_Worker_Upgrade_Button	
-
-		Unpaid_Intern_Worker_Upgrade_Button = tk.Button(root, text=f"Slightly Paid Intern (0.5 -> 1 DPS): [BOUGHT]", command=Unpaid_Intern_Worker_Upgrade)
-		Unpaid_Intern_Worker_Upgrade_Button.pack_forget()
-
-	else:
-		Unpaid_Intern_Worker_Upgrade_Button.pack_forget()
-
-
-	if Logitech_Mouse_Upgrade_var == True:
-		global Logitech_Mouse_Worker_Upgrade_Button
-
-		Logitech_Mouse_Worker_Upgrade_Button = tk.Button(root, text=f"Logitech Super Light Mouse (2 -> 4.5 DPS): [BOUGHT]", command=Logitech_Mouse_Worker_Upgrade)
-
-		Logitech_Mouse_Worker_Upgrade_Button.pack_forget()
-		Logitech_Mouse_Worker_Upgrade_Button.configure(text=f"Logitech Super Light Mouse (2 -> 4.5 DPS): [BOUGHT]")
-
-	
-	if Razor_Mouse_Upgrade_var == True:
-		global Razor_Mouse_Worker_Upgrade_Button
-
-		Razor_Mouse_Worker_Upgrade_Button = tk.Button(root, text="Razor Viper Mouse (5 -> 12.5 DPS): [BOUGHT]")
-
-		Razor_Mouse_Worker_Upgrade_Button.pack_forget()
-		Razor_Mouse_Worker_Upgrade_Button.configure(text="Razor Viper Mouse (5 -> 12.5 DPS): [BOUGHT]")
-
-
-	if Autoclicker_Upgrade_var == True:
-		global Autoclicker_Worker_Upgrade_Button
-
-		Autoclicker_Worker_Upgrade_Button = tk.Button(root, text=f"Semi-OP Autoclicker (15 -> 35 DPS): [BOUGHT]")
-
-		Autoclicker_Worker_Upgrade_Button.pack_forget()
-		Autoclicker_Worker_Upgrade_Button.configure(text=f"Semi-OP Autoclicker (15 -> 35 DPS): [BOUGHT]")
-
-
-	Previous_Shop_Page_2_Button.pack(side="bottom", anchor="ne")
-
-	Shop_Worker_Upgrade_label.pack(side="top", anchor="nw", pady=10, padx=5)
-
-	Unpaid_Intern_Worker_Upgrade_Button.pack(side="top", anchor="nw", padx=3, pady=3)
-	Logitech_Mouse_Worker_Upgrade_Button.pack(side="top", anchor="nw", padx=3, pady=3)
-	Razor_Mouse_Worker_Upgrade_Button.pack(side="top", anchor="nw", padx=3, pady=3)
-	Autoclicker_Worker_Upgrade_Button.pack(side="top", anchor="nw", padx=3, pady=3)
-
-
-
-def ACG_Shop_Render():
-	Pack_Forget()
-
-	root['background']='#eacb1c'
-
-	click_label.configure(text =f"Clicks: {Clicks}", bg="#eacb1c")
-	click_button.configure(text = " ", borderwidth=0, bg="#eacb1c", fg="#eacb1c", activebackground = '#eacb1c', activeforeground = '#eacb1c', width=1, height=1, image=ButtonClicker_Yellow_Image)
-	Shop_button.configure(text = "Leave Shop", command = ACG_Shop_Close, borderwidth=3)
-	Worker_label.configure(bg="#eacb1c")
- 
-
-	if Double_Click_Upgrade == True:
-		global Shop_Double_Button 
-
-		Shop_Double_Button = tk.Button(root, text="Double Click: [BOUGHT]", command=Click_Upgrade_Item("Double")) 
-
-		Shop_Double_Button.pack_forget()
-		Shop_Double_Button.configure(text="Double Click: [BOUGHT]")
-
-	else:
-		Shop_Double_Button.pack_forget()
-
-
-	if Triple_Click_Upgrade == True:
-		global Shop_Triple_Button
-
-		Shop_Triple_Button = tk.Button(root, text="Triple Click: [BOUGHT]", command=Click_Upgrade_Item("Triple"))
-
-		Shop_Triple_Button.pack_forget()
-		Shop_Triple_Button.configure(text="Triple Click: [BOUGHT]")
-	else:
-		Shop_Triple_Button.pack_forget()
-
-
-	if Quintuple_Click_Upgrade == True:
-		global Shop_Quintuple_Button
-
-		Shop_Quintuple_Button = tk.Button(root, text="Quintuple Click: [BOUGHT]", command=Click_Upgrade_Item("Quintuple"))
-
-		Shop_Quintuple_Button.pack_forget()
-		Shop_Quintuple_Button.configure(text="Quintuple Click: [BOUGHT]")
-	else:
-		Shop_Quintuple_Button.pack_forget()
-
-
-	Shop_ClickUpgrade_Label.pack(side="top", anchor="nw", pady=0, padx=5)
-
-	Shop_Double_Button.pack(side="top", anchor="nw", pady=3, padx=5)
-	Shop_Triple_Button.pack(side="top", anchor="nw", pady=3, padx=5)
-	Shop_Quintuple_Button.pack(side="top", anchor="nw", pady=3, padx=5)
-
-	Shop_Worker_label.pack(side="top", anchor="nw", pady=10, padx=5)
-
-	Unpaid_Intern_Worker_Button.pack(side="top", anchor="nw", pady=0, padx=5)
-	Unpaid_Intern_Worker_Button.configure(text=f"{Unpaid_Intern_Name} ({Unpaid_Intern_DPS} DPS): [{Unpaid_Intern_Price} Clicks] - {Unpaid_Intern}")
-
-	Logitech_Mouse_Worker_Button.pack(side="top", anchor="nw", pady=3, padx=5)
-	Logitech_Mouse_Worker_Button.configure(text=f"{Logitech_Mouse_Name} ({Logitech_Mouse_DPS} DPS): [{Logitech_Mouse_Price} Clicks] - {Logitech_Mouse}")
-
-	Razor_Mouse_Worker_Button.pack(side="top", anchor="nw", padx=5, pady=3)
-	Razor_Mouse_Worker_Button.configure(text=f"{Razor_Mouse_Name} ({Razor_Mouse_DPS} DPS): [{Razor_Mouse_Price} Clicks] - {Razor_Mouse}")
-
-	Autoclicker_Worker_Button.pack(side="top", anchor="nw", padx=5, pady=3)
-	Autoclicker_Worker_Button.configure(text=f"{Autoclicker_Name} ({Autoclicker_DPS} DPS): [{Autoclicker_Price} Clicks] - {Autoclicker}")
-	
-
-
-	Shop_Page_2_Button.pack(side="bottom", anchor="ne")
-
-
-def ACG_Menu_Render():
-
-
-	ButtonClick_Image = PhotoImage(file = resource_path('Assets/ClickButton.png'))
-	ButtonClicker_Blue_Image = PhotoImage(file = resource_path("Assets/ClickButton_Blue.png"))
-	ButtonClicker_Yellow_Image = PhotoImage(file = resource_path("Assets/ClickButton_Yellow.png"))
-
-	# Other
-	Blank_label = tk.Label(root, text=" ", bg="#4851e6")
-
-	# KEY GAME VARIABLES (DO NOT TOUCH)
-
-	click_label.pack(anchor="sw", side="bottom")
-	Worker_label.pack(anchor="sw", side="top")
-	Shop_button.pack(anchor="ne", side="top", padx=5, pady=5)
-	Settings_button.pack(anchor="ne", side="bottom", padx=5, pady=5)
-	click_button.pack(anchor = "center")
+    click_button.pack(anchor="center")
 
 
 if __name__ == "__main__":
-
-	root.title("Average Clicker Game [v3.0.1]")
-	root.geometry("395x395")
-	root.resizable(False, False)
-	root.iconbitmap(resource_path('Assets/icon.ico'))
-	root['background']='#4851e6'
-
-
-	# Shop Upgrades
-	Shop_Double_Button = tk.Button(root, text="Double Click [75 Clicks]", command=Click_Upgrade_Item("Double"))
-	Shop_Triple_Button = tk.Button(root, text="Triple Click: [225 Clicks]", command=Click_Upgrade_Item("Triple"))
-	Shop_Quintuple_Button = tk.Button(root, text="Quintuple Click: [1000 Clicks]", command=Click_Upgrade_Item("Quintuple"))
+    root.title("Average Clicker Game [v2.0]")
+    root.geometry("400x400")
+    root.resizable(False, False)
+    root.iconbitmap(resource_path('Assets/icon.ico'))
+    root['background'] = "#4851e6"
 
 
-	# Shop Workers
-	Unpaid_Intern_Worker_Button = tk.Button(root, text=f"{Unpaid_Intern_Name} ({Unpaid_Intern_DPS} DPS): [{Unpaid_Intern_Price} Clicks] - {Unpaid_Intern}", command=Unpaid_Intern_Worker)
-	Logitech_Mouse_Worker_Button = tk.Button(root, text=f"{Logitech_Mouse_Name} ({Logitech_Mouse_DPS} DPS): [{Logitech_Mouse_Price} Clicks] - {Logitech_Mouse}", command=Logitech_Mouse_Worker)
-	Razor_Mouse_Worker_Button = tk.Button(root, text=f"{Razor_Mouse_Name} ({Razor_Mouse_DPS} DPS): [{Razor_Mouse_Price} Clicks] - {Razor_Mouse}", command=Razor_Mouse_Worker)
-	Autoclicker_Worker_Button = tk.Button(root, text=f"{Autoclicker_Name} ({Autoclicker_DPS} DPS): [{Autoclicker_Price} Clicks] - {Autoclicker}", command=Autoclicker_Worker)
+    buttonclick = PhotoImage(file=resource_path('Assets/ClickButton.png'))
+    buttonclick_blue = PhotoImage(file=resource_path("Assets/ClickButton_Blue.png"))
+    buttonclick_yellow = PhotoImage(file=resource_path("Assets/ClickButton_Yellow.png"))
 
-	# Shop Worker Upgrades
-	Unpaid_Intern_Worker_Upgrade_Button = tk.Button(root, text=f"Slightly Paid Intern (0.5 -> 1 DPS): [750 Clicks]", command=Unpaid_Intern_Worker_Upgrade)
-	Logitech_Mouse_Worker_Upgrade_Button = tk.Button(root, text=f"Logitech Super Light Mouse (2 -> 4.5 DPS): [3500 Clicks]", command=Logitech_Mouse_Worker_Upgrade)
-	Razor_Mouse_Worker_Upgrade_Button = tk.Button(root, text=f"Razor Viper Mouse (5 -> 12.5 DPS): [12500 Clicks]", command=Razor_Mouse_Worker_Upgrade)
-	Autoclicker_Worker_Upgrade_Button = tk.Button(root, text=f"Semi-OP Autoclicker (15 -> 35 DPS): [35000 Clicks]", command=Autoclicker_Worker_Upgrade)
-	
-	
-	# Shop Labels
-	Shop_ClickUpgrade_Label = tk.Label(root, text="Clicker Upgrades: ", bg="#eacb1c", font=("Helvetica",10))
-	Shop_Worker_label = tk.Label(root, text="Workers:", bg="#eacb1c", font=("Helvetica",10))
-	Shop_Worker_Upgrade_label = tk.Label(root, text="Worker Upgrades:", bg="#eacb1c", font=("Helvetica",10))
+    blank_label_blue = tk.Label(text=" ", bg="#4851e6")
+    blank_label_yellow = tk.Label(text=" ", bg="#eacb1c")
 
+    click_label = tk.Label(text=f"Clicks: {data['clicks']}", fg="black", bg="#4851e6", font=("Helvetica",10))
+    click_button = tk.Button(text="click me", width=1100, height=1200, borderwidth=0, command=on_click, 
+                            bg="#4851d7", fg="#4851e6", 
+                            activebackground="#4851e6", activeforeground="#4851e6", 
+                            image=buttonclick)
+  
+    worker_label = tk.Label(text=f"Worker CPS: {data['cps']}", fg="black", bg="#4851e6", font=("Helvetica",10))
+    shop_button = tk.Button(text="Enter Shop", command=render_shop1)
+    settings_button = tk.Button(text="Settings")
 
-	# Shop Page Buttons
-	Shop_Page_2_Button = tk.Button(root, text="Page 2 ->", font=("Helvetica",10), command=ACG_Shop2_Render)
-	Shop_Page_3_Button = tk.Button(root, text="Page 3 ->", font=("Helvetica",10), command=ACG_Shop3_Render)
-	Previous_Shop_Page_2_Button = tk.Button(root, text="<- Page 1", font=("Helvetica",10), command=ACG_Shop_Render)
-	Previous_Shop_Page_3_Button = tk.Button(root, text="<- Page 2", font=("Helvetica",10), command=ACG_Shop2_Render)
+    double_button = tk.Button(text="Double Click [75 Clicks]", command=lambda: click_upgrade(type="double"))
+    triple_button = tk.Button(text="Triple Click [225 Clicks]", command=lambda: click_upgrade(type="triple"))
+    quintuple_button = tk.Button(text="Quintuple Click [1000 Clicks]", command=lambda: click_upgrade(type="quintuple"))
+    decuple_button = tk.Button(text="Decuple Click [10000 Clicks]", command=lambda: click_upgrade(type="decuple"))
 
+    # Worker buttons (names shortened):
+    ui_button = tk.Button(text=f"{data['ui']['name']} ({data['ui']['cps']} CPS) [{data['ui']['price']} Clicks] - {data['ui']['bought']}", command=lambda: buy_worker(type="ui"))
+    lm_button = tk.Button(text=f"{data['lm']['name']} ({data['lm']['cps']} CPS) [{data['lm']['price']} Clicks] - {data['lm']['bought']}", command=lambda: buy_worker(type="lm"))
+    rm_button = tk.Button(text=f"{data['rm']['name']} ({data['rm']['cps']} CPS) [{data['rm']['price']} Clicks] - {data['rm']['bought']}", command=lambda: buy_worker(type="rm"))
+    auto_button = tk.Button(text=f"{data['auto']['name']} ({data['auto']['cps']} CPS) [{data['auto']['price']} Clicks] - {data['auto']['bought']}", command=lambda: buy_worker(type="auto"))
 
-	# Settings 
-	settings_save_label = tk.Label(root, text="Settings Save Features: ", bg="#4851e6")
-	settings_other_label = tk.Label(root, text="Settings Other Features: ", bg="#4851e6")
+    ui_upgrade_button = tk.Button(text="Slightly Paid Intern (0.5 -> 1 DPS): [750 Clicks]")
+    lm_upgrade_button = tk.Button(text="Logitech Super Light Mouse (2 -> 4.5 DPS): [3500 Clicks]")
+    rm_upgrade_button = tk.Button(text="Razor Viper Mouse (5 -> 12.5 DPS): [12500 Clicks]")
+    auto_upgrade_button = tk.Button(text="Semi-OP Autoclicker (15 -> 35 DPS): [35000 Clicks]")
 
-	reset_stats_button = tk.Button(root, text="Reset Stats", bg="red", fg="Black", activebackground="red", activeforeground="black", command=Reset_Stats)
-	Save_Button = tk.Button(root, text="Save Game Stats", command=save_system)
-	Credits_Button = tk.Button(root, text="Game Credits", command=Credits)
+    # Shop Buttons:
+    shop_click_label = tk.Label(text="Clicker Upgrades: ", bg="#eacb1c", font=("Helvetica",10))
+    shop_worker_label = tk.Label(text="Workers:", bg="#eacb1c", font=("Helvetica",10))
+    shop_worker_upgrade_label = tk.Label(text="Worker Upgrades:", bg="#eacb1c", font=("Helvetica",10))
 
-	# Credits Labels
-	Credits_Programmer_label = tk.Label(root, text="Programmer: Zacky2613", bg="#4851e6")
-	Credits_Developer_label = tk.Label(root, text="Developer: Zacky2613", bg="#4851e6")
-	Credits_Madewith_label = tk.Label(root, text="Made with: Python tkinter", bg="#4851e6")
-	Credits_Idea_label = tk.Label(root, text="Ideas: Zacky2613, Will", bg="#4851e6")
+    shop_page2_button = tk.Button(text="Page 2 ->", font=("Helvetica",10))
+    shop_page3_button = tk.Button(text="Page 3 ->", font=("Helvetica",10))
 
+    save_label = tk.Label(text="Manual Save Game:", bg="#4851e6")
+    save_button = tk.Button(text="Save Game Stats")
 
+    other_label = tk.Label(text="Settings Other Features: ", bg="#4851e6")
+    reset_button = tk.Button(text="Reset Stats", bg="red", fg="Black", activebackground="red", activeforeground="black")
+    # credits_button = tk.Button(text="Game Credits")  <- Come back to fix.
 
-	# ClickButton Images
-	ButtonClick_Image = PhotoImage(file = resource_path('Assets/ClickButton.png'))
-	ButtonClicker_Blue_Image = PhotoImage(file = resource_path("Assets/ClickButton_Blue.png"))
-	ButtonClicker_Yellow_Image = PhotoImage(file = resource_path("Assets/ClickButton_Yellow.png"))
-
-	Blank_label = tk.Label(root, text=" ", bg="#4851e6")
-
-	click_label = tk.Label(root, text=f"Clicks: {Clicks}", fg="black", bg="#4851e6", font=("Helvetica",10))
-
-	# Worker DPS
-	Worker_label = tk.Label(root, text=f"Worker CPS: {Worker_CPS}", fg="black", bg="#4851e6", font=("Helvetica",10))
-	
-	# Shop
-	Shop_button = tk.Button(root, text="Enter Shop", command=ACG_Shop_Render)
-
-	# Settings
-	Settings_button = tk.Button(root, text="Settings", command=ACG_Settings_Render)
-
-	# ClickButton
-	click_button = tk.Button(root, text="click me", width=1100, height=1200, borderwidth=0, command=on_click, bg="#4851d7", fg="#4851e6", activebackground = '#4851e6', activeforeground = '#4851e6', image = ButtonClick_Image)
-
-	# Contact Label
-	Contact_label = tk.Label(root, text="Report bugs: [REDACTED]@gmail.com", bg="#4851e6", font=("Helvetica",10))
-
-	ACG_Menu_Render()
-
-
+    worker_cps()
+    render_homescreen()
+    
 def close(bind): 
 	root.destroy()
 
-root.protocol("WM_DELETE_WINDOW", save_system)
+root.protocol("WM_DELETE_WINDOW")
 root.bind("<Escape>", close)
 root.mainloop()
